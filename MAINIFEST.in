@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include integration_settings/logging *
+recursive-include integration_settings/media *
