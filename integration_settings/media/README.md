@@ -7,12 +7,12 @@ common pattern here.
 
     # include the shared aashe settings
     from integration_settings.media.s3 import *
+
     # Update INSTALLED_APPS
     INSTALLED_APPS += ('s3_folder_storage',)
+
     # tell it where you keep your static files in this app
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
-
-No need to add 's3_folder_storage' to your installed apps, this is done in the settings include.
 
 ## What it does
 
@@ -53,3 +53,19 @@ You will need to modify your wsgi.py script to the following:
 
 - [whitenoise](http://whitenoise.evans.io/en/latest/)
 - [django-s3-folder-storage](https://github.com/jamstooks/django-s3-folder-storage)
+
+## Local development
+
+From time to time you may need to test media uploads locally and won't want to
+connect to s3. For this, we often use an environment variable, like `USE_S3`:
+
+    USE_S3 = os.environ.get('USE_S3', None)
+    if USE_S3:
+      from integration_settings.media.s3 import *
+      INSTALLED_APPS += ('s3_folder_storage',)
+      STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
+    else:
+      MEDIA_URL = "/media/"
+      STATIC_URL = "/static/"
+      MEDIA_ROOT = os.environ.get("MEDIA_ROOT", os.path.join(BASE_DIR, '/media/'))
+      STATIC_ROOT = os.environ.get("STATIC_ROOT", os.path.join(BASE_DIR, '/static/'))
