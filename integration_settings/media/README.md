@@ -69,3 +69,23 @@ connect to s3. For this, we often use an environment variable, like `USE_S3`:
       STATIC_URL = "/static/"
       MEDIA_ROOT = os.environ.get("MEDIA_ROOT", os.path.join(BASE_DIR, '/media/'))
       STATIC_ROOT = os.environ.get("STATIC_ROOT", os.path.join(BASE_DIR, '/static/'))
+
+## Recommendations
+
+You should set `MEDIA_ROOT` in your environment variables. I like to set up my
+local directory structure this way:
+
+    workspace/
+      media/
+        <project folders>
+      src/
+        <repos>
+
+I keep my repos in src/ and create folders in media/ as necessary for projects
+that store local uploaded media. This means I generally set my ENV var as
+follows:
+
+    MEDIA_ROOT = '/Users/jamstooks/aashe/workspace/media/<project>/'
+
+This keeps media out of the repo and allows me to keep a consistent place for
+media, even if I use a new branch.
