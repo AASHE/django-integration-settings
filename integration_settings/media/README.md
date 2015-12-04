@@ -3,48 +3,30 @@
 The majority of our apps use similar media settings, so we've shared that
 common pattern here:
 
-  - hosted on heroku
-  - static files collected into `staticfiles`
-  - static files served by [whitenoise](http://whitenoise.evans.io/en/latest/)
-  - uploaded media stored on s3
+  - hosted on server
+    - static files collected into `staticfiles/`
+    - static files served by [whitenoise](http://whitenoise.evans.io/en/latest/)
+    - uploaded media stored on s3 using [django-s3-folder-storage](https://github.com/jamstooks/django-s3-folder-storage)
+  - running locally
+    - static files served in debug mode or collected into `staticfiles` and served by whitenoise
+    - medial files uploaded to a directory based on the `MEDIA_ROOT` environment variable
 
 ## Example
 
-    # include the shared aashe settings
+    # Media Settings
     from integration_settings.media.s3 import *
-
-    # Update INSTALLED_APPS
-    INSTALLED_APPS += ('s3_folder_storage',)
-
-    # tell it where you keep your static files in this app
+    # you still have to tell it where you keep your static files in the project
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
-## What it does
+## Environment Variables
 
-### Static Media
+`USE_S3` - if set at all, s3 will be used for uploaded media. if unset, media will be stored and served locally using `MEDIA_ROOT` env var.
+`AWS_ACCESS_KEY_ID`
+`AWS_SECRET_ACCESS_KEY`
+`AWS_STORAGE_BUCKET_NAME`
+`DEFAULT_S3_PATH` (optional, defaults to 'uploads')
 
-Static files can be hosted by the application server and served by
-[whitenoise](http://whitenoise.evans.io/en/latest/). This configuration assumes
-that the files will be collected into the "/staticfiles/" directory.
-
-### Uploaded Media
-
-Uploaded media is hosted on Amazon's S3 using [django-s3-folder-storage](https://github.com/jamstooks/django-s3-folder-storage).
-
-## Requirements
-
-You'll need to install `django-s3-folder-storage` - add it to requirements.txt
-
-### Environment variables
-
-You must define the following environment variables:
-
-  - `AWS_ACCESS_KEY_ID`
-  - `AWS_SECRET_ACCESS_KEY`
-  - `AWS_STORAGE_BUCKET_NAME`
-  - `DEFAULT_S3_PATH` (optional, defaults to 'uploads')
-
-### WSGI configuration
+## WSGI configuration
 
 You will need to modify your wsgi.py script to the following:
 
@@ -54,32 +36,11 @@ You will need to modify your wsgi.py script to the following:
     application = get_wsgi_application()
     application = DjangoWhiteNoise(application)
 
-### Dependencies
-
-- [whitenoise](http://whitenoise.evans.io/en/latest/)
-- [django-s3-folder-storage](https://github.com/jamstooks/django-s3-folder-storage)
-
 ## Local development
 
 From time to time you may need to test media uploads locally and won't want to
-connect to s3. For this, we often use an environment variable, like `USE_S3`:
-
-    # Media
-    USE_S3 = os.environ.get('USE_S3', None)
-
-    if USE_S3:
-        INSTALLED_APPS += ('s3_folder_storage',)
-        from integration_settings.media.s3 import *
-    else:
-        MEDIA_URL = "/media/"
-        STATIC_URL = "/static/"
-        MEDIA_ROOT = os.environ.get("MEDIA_ROOT", None)
-        STATIC_ROOT = os.environ.get(
-            "STATIC_ROOT", os.path.join(BASE_DIR, 'staticfiles'))
-
-    STATICFILES_DIRS = (
-        os.path.join(os.path.dirname(__file__), 'static'),
-    )
+connect to s3. For this, we often use an environment variable, like `USE_S3`.
+Simply unset that variable and you're golden.
 
 ## Recommendations
 
