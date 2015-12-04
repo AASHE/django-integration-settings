@@ -6,6 +6,7 @@ Reusable settings templates for tools we commonly integrate with
 
   - media configuration with s3 and whitenoise
   - logging configuration with sentry
+  - testing configuration with travis.ci and coveralls.io
 
 ## General best practices
 
