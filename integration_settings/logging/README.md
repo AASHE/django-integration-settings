@@ -7,9 +7,7 @@ django applications.
 
     # include the shared aashe settings
     from integration_settings.logging import *
-
-*Note: since these settings update `INSTALLED_APPS`, this import should go below
-the `INSTALLED_APPS` definition.*
+    INSTALLED_APPS += ('raven.contrib.django.raven_compat',)
 
 ## What it does
 

@@ -3,13 +3,12 @@
 """
 import os
 
-USE_S3 = os.environ.get('USE_S3', None)
+USE_S3 = os.environ.get('USE_S3', False)
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', 'staticfiles')
 
 if USE_S3:
-    INSTALLED_APPS += ('s3_folder_storage',)
 
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", None)
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", None)

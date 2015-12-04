@@ -15,12 +15,10 @@ common pattern here:
 
     # Media Settings
     from integration_settings.media.s3 import *
+    INSTALLED_APPS += ('s3_folder_storage',)
 
     # you still have to tell it where you keep your static files in the project
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
-
-*Note: since these settings update `INSTALLED_APPS`, this import should go below
-the `INSTALLED_APPS` definition.*
 
 ## Environment Variables
 
