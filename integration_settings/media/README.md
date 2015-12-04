@@ -19,6 +19,9 @@ common pattern here:
     # you still have to tell it where you keep your static files in the project
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
+*Note: since these settings update `INSTALLED_APPS`, this import should go below
+the `INSTALLED_APPS` definition.*
+
 ## Environment Variables
 
 `USE_S3` - if set at all, s3 will be used for uploaded media. if unset, media will be stored and served locally using `MEDIA_ROOT` env var.
