@@ -15,6 +15,7 @@ common pattern here:
 
     # Media Settings
     from integration_settings.media.s3 import *
+
     # you still have to tell it where you keep your static files in the project
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
@@ -25,6 +26,11 @@ common pattern here:
 `AWS_SECRET_ACCESS_KEY`
 `AWS_STORAGE_BUCKET_NAME`
 `DEFAULT_S3_PATH` (optional, defaults to 'uploads')
+
+**Optional**
+`STATIC_ROOT` - this defaults to 'staticfiles', which should work for most use cases,
+but you could override it with an environment variable or set it in your settings
+below the import.
 
 ## WSGI configuration
 
