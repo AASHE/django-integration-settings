@@ -1,7 +1,12 @@
 # Shared media management settings
 
 The majority of our apps use similar media settings, so we've shared that
-common pattern here.
+common pattern here:
+
+  - hosted on heroku
+  - static files collected into `staticfiles`
+  - static files served by [whitenoise](http://whitenoise.evans.io/en/latest/)
+  - uploaded media stored on s3
 
 ## Example
 
@@ -59,16 +64,22 @@ You will need to modify your wsgi.py script to the following:
 From time to time you may need to test media uploads locally and won't want to
 connect to s3. For this, we often use an environment variable, like `USE_S3`:
 
+    # Media
     USE_S3 = os.environ.get('USE_S3', None)
+
     if USE_S3:
-      from integration_settings.media.s3 import *
-      INSTALLED_APPS += ('s3_folder_storage',)
-      STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
+        INSTALLED_APPS += ('s3_folder_storage',)
+        from integration_settings.media.s3 import *
     else:
-      MEDIA_URL = "/media/"
-      STATIC_URL = "/static/"
-      MEDIA_ROOT = os.environ.get("MEDIA_ROOT", os.path.join(BASE_DIR, '/media/'))
-      STATIC_ROOT = os.environ.get("STATIC_ROOT", os.path.join(BASE_DIR, '/static/'))
+        MEDIA_URL = "/media/"
+        STATIC_URL = "/static/"
+        MEDIA_ROOT = os.environ.get("MEDIA_ROOT", None)
+        STATIC_ROOT = os.environ.get(
+            "STATIC_ROOT", os.path.join(BASE_DIR, 'staticfiles'))
+
+    STATICFILES_DIRS = (
+        os.path.join(os.path.dirname(__file__), 'static'),
+    )
 
 ## Recommendations
 
