@@ -1,0 +1,9 @@
+[run]
+source =
+    root_dir/app_dir_1
+    root_dir/app_dir_2
+    ...
+omit =
+    *omit_dir_1*
+    *omit_dir_2*
+    ...

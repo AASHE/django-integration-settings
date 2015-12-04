@@ -1,0 +1,23 @@
+language: python
+python:
+- '2.7'
+env:
+  global:
+  #INSERT ENVIRONMENT VARIABLES HERE IN THE DEMONSTRATED FORMAT
+  - VARIABLE=value
+  - secure: encrypted variable
+install:
+#INSERT PIP COMMANDS TO INSTALL DEPENDENCIES
+- pip install -r requirements.txt
+- pip install -r test_requirements.txt
+before_script:
+  #INSERT ANY ACTIONS THAT NEED TO BE EXECUTED BEFORE RUNNING TESTS BUT AFTER INSTALLING DEPENDENCIES
+  - python manage.py collectstatic --noinput
+#THIS IS THE ACTUAL COMMAND TO RUN YOUR TESTS WITH COVERAGE
+script: coverage run manage.py test -v3
+#INSERT ANY ACTIONS THAT NEED TO BE EXECUTED AFTER RUNNING TESTS
+after_success: coveralls
+#SET UP NOTIFICATIONS IF YOU LIKE
+notifications:
+  hipchat: #HIPCHAT ROOM ID GOES HERE
+  email: false
