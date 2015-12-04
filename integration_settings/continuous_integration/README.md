@@ -3,6 +3,9 @@
 This provides templates and documentation for setting up integrations with travis.ci and coveralls.io.
 
 ## Configuration
+
+The following steps will enable automatic testing with travis.ci and reporting of test coverage
+stats to coveralls.io:
     
     - On github, enable travis.ci in your repository's settings.
     - On travis.ci, make sure the repository is displayed and is enabled.
@@ -17,6 +20,8 @@ This provides templates and documentation for setting up integrations with travi
     Note: Remember to remove the instructional comment lines from these configuration files.
     
 ## Troubleshooting
+
+Here are some common problems encountered:
 
     - If builds are not triggering with travis, check your repository settings on github and travis.ci. 
     Be sure travis is set to build on each push and/or pull request.
