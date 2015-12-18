@@ -29,7 +29,7 @@ Update MIDDLEWARE_CLASSES
 
     - Django
 
-### Environment variables
+## Environment variables
 
     - AASHE_AUTH_API_KEY  # aka SSO_API_KEY
     - AASHE_AUTH_DOMAIN  # aka STARS_DOMAIN
@@ -40,3 +40,26 @@ Update MIDDLEWARE_CLASSES
     - AASHE_DRUPAL_KEY_DOMAIN
     - AASHE_DRUPAL_COOKIE_SESSION
     - AASHE_DRUPAL_COOKIE_DOMAIN
+
+## Login and Logout Views
+
+Update your URL configuration file:
+
+     from aashe.aasheauth.views import LoginView, logout
+     
+     urlpatterns = [
+         ...
+         url(r'^login/', LoginView.as_view(), name='login'),
+         url(r'^logout/', logout, name='logout'),
+         ...
+     ]
+     
+Include a Login link in your template. Construct the <a> tag such that it includes a "?next=" parameter like so:
+
+     <a href="{% url "login" %}?next={{ request.path }}">
+     
+This will cause your session to redirect back to the page where the user clicked the Login link after a successful login.
+
+The same is true for logging out:
+
+    <a href="{% url "logout" %}?next={{ request.path }}">
