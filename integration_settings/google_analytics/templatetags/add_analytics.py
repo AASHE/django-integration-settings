@@ -8,16 +8,14 @@ import os
 register = template.Library()
 
 
-@register.simple_tag
+@register.inclusion_tag('analytics.html')
 def add_analytics():
-    if not os.environ.get('DEBUG', False):
-        tag = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" \
-              "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," \
-              "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" \
-              "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');" \
-              "ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', '{{ GOOGLE_ANALYTICS_DOMAIN }}');" \
-              "ga('send', 'pageview');" \
-              "</script>"
-    else:
-        tag = ''
-    return tag
+    return None
+
+
+@register.assignment_tag
+def toggle_analytics():
+    toggle = os.environ.get('GOOGLE_ANALYTICS_PROPERTY_ID', None)
+    if not toggle:
+        return False
+    return True
