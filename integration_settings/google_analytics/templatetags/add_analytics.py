@@ -2,22 +2,22 @@
     A template tag to load google analytics script within a django template.
     Returns GA script only if Debug=False.
 """
-from django.template import Library
+from django import template
 import os
 
-register = Library()
+register = template.Library()
 
 
 @register.simple_tag
 def add_analytics():
-    tag = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" \
-          "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," \
-          "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" \
-          "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');" \
-          "ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', '{{ GOOGLE_ANALYTICS_DOMAIN }}');" \
-          "ga('send', 'pageview');" \
-          "</script>"
     if not os.environ.get('DEBUG', False):
-        return tag
+        tag = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" \
+              "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," \
+              "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" \
+              "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');" \
+              "ga('create', '{{ GOOGLE_ANALYTICS_PROPERTY_ID }}', '{{ GOOGLE_ANALYTICS_DOMAIN }}');" \
+              "ga('send', 'pageview');" \
+              "</script>"
     else:
-        return None
+        tag = ''
+    return tag
