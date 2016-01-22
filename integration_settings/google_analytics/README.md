@@ -21,8 +21,9 @@ within your templates.
 
 ## Environment Variables
 
-    None, all are included in the analytics.py settings extension file
-    imported in the Installation and Settings section.
+    GOOGLE_ANALYTICS_PROPERTY_ID
+    GOOGLE_ANALYTICS_DOMAIN
+    DEBUG
 
 ## Template Tag Usage
 
