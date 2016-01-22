@@ -6,7 +6,7 @@ within your templates.
 ## Installation and Settings
 
     # Include the shared aashe settings
-    from integration_settings.google_analytics.analytics import *
+    from integration_settings.google_analytics import *
     # Update INSTALLED_APPS
     INSTALLED_APPS += ('integration_settings.google_analytics',)
 
