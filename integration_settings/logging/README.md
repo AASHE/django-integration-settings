@@ -6,7 +6,7 @@ django applications.
 ## Example
 
     # include the shared aashe settings
-    from integration_settings.logging import *
+    from integration_settings.logging.sentry import *
     # update INSTALLED_APPS
     INSTALLED_APPS += ('raven.contrib.django.raven_compat',)
 
