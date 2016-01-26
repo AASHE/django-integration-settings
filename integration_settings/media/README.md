@@ -54,6 +54,24 @@ You will need to modify your wsgi.py script to the following:
     application = get_wsgi_application()
     application = DjangoWhiteNoise(application)
 
+### Signed vs. Unsigned AWS URLs
+
+The URLs for your S3 served files can be signed or unsigned.
+
+The advantage of a signed URL is that you can restrict access to it.
+A disadvantage of a signed URL is that, by default, it includes an `Expires`
+GET parameter that will prevent access to the resource after not much
+time at all. Expired URLs return a 403 status code.
+
+The advantage to an unsigned URL is that there is no restriction on
+access -- anybody, any time, can load the resource.
+
+If you want to serve unsigned AWS URLs, and you probably do, the environment
+variable `AWS_QUERYSTRING_AUTH` must be set to False. That's done for you in
+integration_settings.media.s3, so you don't have to change anything.
+
+If you want to use signed AWS URLs, set `AWS_QUERYSTRING_AUTH` to True.
+
 ### Dependencies
 
 - [whitenoise](http://whitenoise.evans.io/en/latest/)
@@ -100,3 +118,8 @@ follows:
 
 This keeps media out of the repo and allows me to keep a consistent place for
 media, even if I use a new branch.
+
+## Troubleshooting
+
+"All my images disappeared!" Probably not, they're probably just 403. See the
+'Signed vs. Unsigned AWS URLs' section above.
