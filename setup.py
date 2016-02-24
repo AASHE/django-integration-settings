@@ -19,6 +19,8 @@ setup(
         'integration_settings',
         'integration_settings.logging',
         'integration_settings.media',
+        'integration_settings.google_analytics',
+        'integration_settings.authentication',
     ],
     classifiers=[
         'Environment :: Web Environment',
