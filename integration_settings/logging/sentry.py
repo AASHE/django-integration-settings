@@ -1,7 +1,7 @@
 """
     AASHE's shared logging config
 """
-import logging
+import logging.config
 import os
 
 RAVEN_CONFIG = {
