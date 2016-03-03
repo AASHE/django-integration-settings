@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='django-integration-settings',
-    version='0.0.3',
+    version='0.0.4',
     description="Reusable settings templates for tools we commonly integrate with.",
     author='AASHE',
     author_email='it@aashe.org',

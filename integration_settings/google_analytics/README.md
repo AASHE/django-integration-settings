@@ -5,10 +5,23 @@ within your templates.
 
 ## Installation and Settings
 
-    # Include the shared aashe settings
-    from integration_settings.google_analytics import *
     # Update INSTALLED_APPS
     INSTALLED_APPS += ('integration_settings.google_analytics',)
+    
+    # Add env variables
+    GOOGLE_ANALYTICS_PROPERTY_ID = os.environ.get('GOOGLE_ANALYTICS_PROPERTY_ID', None)
+    GOOGLE_ANALYTICS_DOMAIN = os.environ.get('GOOGLE_ANALYTICS_DOMAIN', None)
+
+    # Add context processor
+    TEMPLATES['OPTIONS']['context_processors'] += (
+        'integration_settings.google_analytics.context_processor.google_analytics',
+    )
+
+You can update each of these manually in your settings.py, or attempt:
+
+    from integration_settings.google_analytics.analytics import *
+    
+Note: this sometimes raises the error that TEMPLATES is not defined.
 
 ## What it does
 
