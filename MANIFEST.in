@@ -3,4 +3,6 @@ include README.md
 recursive-include integration_settings/logging *
 recursive-include integration_settings/media *
 recursive-include integration_settings/google_analytics *
+recursive-include integration_settings/google_analytics/templates *
+recursive-include integration_settings/google_analytics/templatetags *
 recursive-include integration_settings/authentication *
