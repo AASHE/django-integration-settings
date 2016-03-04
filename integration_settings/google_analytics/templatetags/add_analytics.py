@@ -15,7 +15,7 @@ def add_analytics():
 
 @register.assignment_tag
 def toggle_analytics():
-    toggle = os.environ.get('GOOGLE_ANALYTICS_PROPERTY_ID', None)
+    toggle = os.environ.get('GOOGLE_ANALYTICS_PROPERTY_ID', None) and not os.environ.get('DEBUG', False)
     if not toggle:
         return False
     return True
