@@ -49,6 +49,12 @@ From time to time you may need to test media uploads locally and won't want to
 connect to s3. For this, we often use an environment variable, like `USE_S3`.
 Simply unset that variable and you're golden.
 
+## Using a CDN
+
+Quickly set the hosts with these environment variables:
+ 
+`CDN_MEDIA_HOST` and `CDN_STATIC_HOST`
+
 ## Recommendations
 
 You should set `MEDIA_ROOT` in your environment variables. I like to set up my

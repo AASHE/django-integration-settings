@@ -7,6 +7,10 @@ USE_S3 = os.environ.get('USE_S3', False)
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', 'staticfiles')
+    
+# CDN Settings
+STATIC_HOST = os.environ.get('CDN_STATIC_HOST', '')
+STATIC_URL = STATIC_HOST + '/static/'
 
 if USE_S3:
 
@@ -20,6 +24,12 @@ if USE_S3:
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
     MEDIA_URL = '//s3.amazonaws.com/%s/%s/' % (
         AWS_STORAGE_BUCKET_NAME, DEFAULT_S3_PATH)
+        
+    # CDN?
+    CDN_MEDIA_HOST = os.environ.get('CDN_MEDIA_HOST', None)
+    if CDN_MEDIA_HOST:
+        MEDIA_URL = '//%s/%s/%s/' % (
+            CDN_MEDIA_HOST AWS_STORAGE_BUCKET_NAME, DEFAULT_S3_PATH)
 
     # Static files, served with whitenoise
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
