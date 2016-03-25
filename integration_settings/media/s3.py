@@ -26,7 +26,7 @@ STATIC_URL = STATIC_HOST + '/static/'
 
 CDN_MEDIA_HOST = os.environ.get('CDN_MEDIA_HOST', None)
 if CDN_MEDIA_HOST:
-    MEDIA_URL = '%s/%s/%s/' % (
-        CDN_MEDIA_HOST, AWS_STORAGE_BUCKET_NAME, DEFAULT_S3_PATH)
+    MEDIA_URL = '%s/%s/' % (
+        CDN_MEDIA_HOST, DEFAULT_S3_PATH)
 
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'

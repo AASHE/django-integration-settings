@@ -119,6 +119,19 @@ follows:
 This keeps media out of the repo and allows me to keep a consistent place for
 media, even if I use a new branch.
 
+### CDN Support
+
+CDN's are supported with two simple environment variables:
+
+`CDN_MEDIA_HOST` and `CDN_STATIC_HOST`
+
+For example, if you're using cloudfront, you might set `CDN_MEDIA_HOST` to:
+
+    https://d21hv7tg6znr97.cloudfront.net
+    
+Check out the [whitenoise documentation](http://whitenoise.evans.io/en/latest/django.html#instructions-for-amazon-cloudfront)
+for more information.
+
 ## Troubleshooting
 
 "All my images disappeared!" Probably not, they're probably just 403. See the
