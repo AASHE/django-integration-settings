@@ -28,7 +28,7 @@ if CDN_STATIC_HOST:
 
 CDN_MEDIA_HOST = os.environ.get('CDN_MEDIA_HOST', None)
 if CDN_MEDIA_HOST:
-    MEDIA_URL = '%s/%s/' % (
+    MEDIA_URL = '//%s/%s/' % (
         CDN_MEDIA_HOST, DEFAULT_S3_PATH)
     AWS_S3_CUSTOM_DOMAIN = CDN_MEDIA_HOST
 
