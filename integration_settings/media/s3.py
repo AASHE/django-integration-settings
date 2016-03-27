@@ -19,10 +19,12 @@ MEDIA_URL = '//s3.amazonaws.com/%s/%s/' % (
 # Static files, served with whitenoise
 STATIC_ROOT = 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_URL = '/static/'
 
 # CDN Settings
-STATIC_HOST = os.environ.get('CDN_STATIC_HOST', '')
-STATIC_URL = STATIC_HOST + '/static/'
+CDN_STATIC_HOST = os.environ.get('CDN_STATIC_HOST', None)
+if CDN_STATIC_HOST:
+    STATIC_URL = "//%s%s" % (CDN_STATIC_HOST, STATIC_URL)
 
 CDN_MEDIA_HOST = os.environ.get('CDN_MEDIA_HOST', None)
 if CDN_MEDIA_HOST:
