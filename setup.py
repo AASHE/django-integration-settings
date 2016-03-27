@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='django-integration-settings',
-    version='0.0.13',
+    version='0.0.14',
     description="Reusable settings templates for tools we commonly integrate with.",
     author='AASHE',
     author_email='it@aashe.org',
@@ -22,6 +22,7 @@ setup(
         'integration_settings.google_analytics',
         'integration_settings.authentication',
     ],
+    include_package_data=True,
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
