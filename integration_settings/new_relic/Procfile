@@ -1,0 +1,1 @@
+web: newrelic-admin run-program gunicorn [insert your app's heroku wsgi file here] --log-file -
