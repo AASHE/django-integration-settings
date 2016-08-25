@@ -5,7 +5,7 @@ import logging.config
 import os
 
 RAVEN_CONFIG = {
-    'dsn': os.environ.get('RAVEN_DSN', '/static/'),
+    'dsn': os.environ.get('RAVEN_DSN', None),
     'release': os.environ.get('RAVEN_RELEASE', '')
 }
 LOGGING_LEVEL = os.environ.get('LOGGING_LEVEL', 'INFO')
