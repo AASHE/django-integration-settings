@@ -65,4 +65,6 @@ pinging it, for example:
     sudo aws iam upload-server-certificate \
     --server-certificate-name hub-media.aashe.org \
     --certificate-body file:///etc/letsencrypt/live/hub-media.aashe.org/cert.pem \
-    --private-key file:///etc/letsencrypt/live/hub-media.aashe.org/privkey.pem \ --certificate-chain file:///etc/letsencrypt/live/hub-media.aashe.org/chain.pem \ --path /cloudfront/
+    --private-key file:///etc/letsencrypt/live/hub-media.aashe.org/privkey.pem \
+    --certificate-chain file:///etc/letsencrypt/live/hub-media.aashe.org/chain.pem \
+    --path /cloudfront/
