@@ -31,7 +31,7 @@ There will be a prompt for the acme challenge:
     cd /tmp/letsencrypt/public_html
     printf "%s" LmCcIweXN5LS-gTkZQJnlfafXacn36WN95bVAnswPj4.FXM5sZV0zkzMFrkNMeL0wtbi2VErKpUEywhiHLXXdhA > .well-known/acme-challenge/LmCcIweXN5LS-gTkZQJnlfafXacn36WN95bVAnswPj4
 
-With the django-acme-challenge app, you can simply update these vars on the server:
+With the [django-acme-challenge](https://github.com/jamstooks/django-acme-challenge) app, you can simply update these vars on the server:
 
  - `ACME_CHALLENGE_URL_SLUG`
  - `ACME_CHALLENGE_TEMPLATE_CONTENT`
