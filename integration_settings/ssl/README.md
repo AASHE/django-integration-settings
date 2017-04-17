@@ -50,6 +50,15 @@ Or update:
 
 ### CloudFront
 
+ 1. Create the new certificate above
+ 2. Manually create the acme-challenge file manually in your s3 bucket
+  - example: hub-media is [here](https://console.aws.amazon.com/s3/buckets/aashe-hub-production/.well-known/acme-challenge/?region=us-east-1&tab=overview)
+ 3. Either run the "recommended" script below or run the aws-cli command manually
+  - note: the `server-certificate-name` must change every time
+ 4. Update the certificate in the cloudfront distribution
+  - example: hub-media settings are [here](https://console.aws.amazon.com/cloudfront/home?region=us-east-1#distribution-settings:E1VMEV98GCLXO2) (hit the edit button)
+  - additional note, you can probably use an aws-cli command here too, but I haven't researched it
+
 #### Recommended:
 
 I created `cf_ssl_renew.sh` to run through this process quickly
